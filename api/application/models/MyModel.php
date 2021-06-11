@@ -12,7 +12,7 @@ class MyModel extends CI_Model {
         if($client_service == $this->client_service && $auth_key == $this->auth_key){
             return true;
         } else {
-            return json_output(200,array('status' => 401,'message' => 'Unauthorized.'));//on mobile dev request sending 200 response with status as 401
+            return json_output(200,array('status' => 401,'message' => 'Unauthorized.', "key1" => $client_service));//on mobile dev request sending 200 response with status as 401
         }
     }
 
@@ -77,21 +77,14 @@ class MyModel extends CI_Model {
 
     public function loginwithmobile($mobile,$country_code,$device_token)
     {
-
-
-
-
-
-    $this->db->insert('users',array('email'=>'','name'=>'','device_token'=>$device_token));
-    $insert_id = $this->db->insert_id();
-
-
+ 
+      $this->db->insert('users',array('email'=>'','name'=>'','device_token'=>$device_token));
+      $insert_id = $this->db->insert_id();
     //echo $insert_id;die;
-
-    $t=time();
-    $this->db->insert('user_profile',array('mobile'=>$mobile,'country_code'=>$country_code,'user_id' => $insert_id,'type' =>'1','name' =>'NA','last_name' => 'NA','profile_pic' => 'NA','created_at' => $t,'updated_at' => $t));
-
-     $q  = $this->db->select('mobile,user_id,name')->from('user_profile')->where('id',$insert_id)->get()->result();
+      
+      $t=time();
+      $this->db->insert('user_profile',array('mobile'=>$mobile,'country_code'=>$country_code,'user_id' => $insert_id,'type' =>'1','name' =>'NA','last_name' => 'NA','profile_pic' => 'NA','created_at' => $t,'updated_at' => $t));
+      $q  = $this->db->select('mobile,user_id,name')->from('user_profile')->where('id',$insert_id)->get()->result();
         
         if($q == ""){
             return array('status' => 401,'message' => 'User not found.');
@@ -190,10 +183,11 @@ class MyModel extends CI_Model {
 
     public function auth()
     {
-		$this->input->request_headers();
+		    $this->input->request_headers();
         $users_id  = $this->input->get_request_header('User-ID', TRUE);
         $token     = $this->input->get_request_header('Token', TRUE);
-        $q  = $this->db->select('expired_at')->from('users_authentication')->where('users_id',$users_id)->where('token',$token)->get()->row();
+     
+        $q  = $this->db->select('expired_at')->from('users_authentication')->where('users_id',(int)$users_id)->where('token',$token)->get()->row();
         if($q == ""){
             return json_output(200,array('status' => 401,'message' => 'Auth Failed'));
 			//on mobile dev request sending 200 response with status as 401
@@ -358,7 +352,7 @@ class MyModel extends CI_Model {
     }
 
       public function getSingleRow($table, $condition)
-        {
+        { 
             $this->db->select('*');
             $this->db->from($table);
             $this->db->where($condition);
@@ -372,7 +366,7 @@ class MyModel extends CI_Model {
             $this->db->update($table, $data);
            //= echo $sql = $this->db->last_query();
 
-                  if ($this->db->affected_rows() > 0)
+            if ($this->db->affected_rows() > 0)
             {
               return TRUE;
             }

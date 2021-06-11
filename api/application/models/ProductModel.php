@@ -11,16 +11,18 @@ class ProductModel extends CI_Model {
     {
         $this->input->request_headers();
         $users_id  = $this->input->get_request_header('User-ID', TRUE);
-        /* return $this->db->select('*')->from('products')->where('id',$id)->order_by('id','desc')->get()->row();*/
-        $this->db->select('products.*,IFNULL(wish_list.status , "0") as is_like,user_profile.name as user_name,user_profile.profile_pic as user_image,IFNULL(FLOOR(avg(review.star)), "0")  as avg_ratting,sub_category.verification_required');
+        //return $this->db->select('*')->from('products')->where('id',$id)->order_by('id','desc')->get()->row();*/
+        //$this->db->select('products.*,IFNULL(wish_list.status , "0") as is_like,user_profile.name as user_name,user_profile.profile_pic as user_image,IFNULL(FLOOR(avg(review.star)), "0")  as avg_ratting,sub_category.verification_required');
+        $this->db->select('*');
         $this->db->from('products');
-        $this->db->join('wish_list', 'wish_list.product_id = products.id','left');
-        $this->db->join('sub_category', 'sub_category.id = products.sub_category_id','left');
-        $this->db->join('review', 'review.product_id = products.id','left');
-        $this->db->join('user_profile', 'user_profile.user_id = products.user_id','left');
+        // $this->db->join('wish_list', 'wish_list.product_id = products.id','left');
+        // $this->db->join('wish_list', 'wish_list.product_id = products.id','left');
+        // $this->db->join('sub_category', 'sub_category.id = products.sub_category_id','left');
+        // $this->db->join('review', 'review.product_id = products.id','left');
+        // $this->db->join('user_profile', 'user_profile.user_id = products.user_id','left');
         $this->db->where('products.id',$id);
         $query = $this->db->get();
-        return $query->row ();
+        return $query->row();
     }
 
     public function review_detail_data($id)

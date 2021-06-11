@@ -122,3 +122,15 @@ DEBUG - 2021-06-08 22:27:07 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2021-06-08 22:27:07 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
 DEBUG - 2021-06-08 22:27:07 --> Session class already loaded. Second attempt ignored.
 DEBUG - 2021-06-08 22:27:07 --> Total execution time: 0.0534
+DEBUG - 2021-06-08 23:57:41 --> UTF-8 Support Enabled
+DEBUG - 2021-06-08 23:57:41 --> No URI present. Default controller set.
+DEBUG - 2021-06-08 23:57:41 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-06-08 23:57:41 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2021-06-08 23:57:41 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2021-06-08 23:57:41 --> Total execution time: 0.0737
+DEBUG - 2021-06-08 23:57:42 --> UTF-8 Support Enabled
+DEBUG - 2021-06-08 23:57:42 --> No URI present. Default controller set.
+DEBUG - 2021-06-08 23:57:42 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2021-06-08 23:57:42 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2021-06-08 23:57:42 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2021-06-08 23:57:42 --> Total execution time: 0.0261
